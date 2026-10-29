@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIGHT RP</title>
+    <style>
+        /* Общие брутальные стили и темный фон */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Шапка сайта */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(11, 12, 16, 0.95);
+            border-bottom: 2px solid #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Брутальное алмазное неоновое название */
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 
+                0 0 5px #fff,
+                0 0 10px #00f0ff,
+                0 0 20px #00f0ff,
+                0 0 40px #7000ff;
+        }
+
+        /* Кнопка вызова боковой панели */
+        .menu-btn {
+            background: transparent;
+            border: 2px solid #00f0ff;
+            color: #00f0ff;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background: #00f0ff;
+            color: #000;
+            box-shadow: 0 0 20px #00f0ff;
+        }
+
+        /* Брутальная боковая панель */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: #12141c;
+            border-left: 3px solid #7000ff;
+            box-shadow: -5px 0 25px rgba(112, 0, 255, 0.4);
+            padding: 100px 30px 30px 30px;
+            transition: right 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 99;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        /* Кнопки в боковой панели */
+        .sidebar-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        /* Специфические стили для кнопок */
+        .btn-donate {
+            background: #1f1215;
+            border: 2px dashed #ff0055;
+            color: #ff0055;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .btn-download {
+            background: transparent;
+            border: 2px solid #00f0ff;
+            color: #00f0ff;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        .btn-download:hover {
+            background: #00f0ff;
+            color: #000;
+            box-shadow: 0 0 25px #00f0ff;
+        }
+
+        .btn-forum {
+            background: transparent;
+            border: 2px solid #7000ff;
+            color: #7000ff;
+            box-shadow: 0 0 10px rgba(112, 0, 255, 0.2);
+        }
+
+        .btn-forum:hover {
+            background: #7000ff;
+            color: #fff;
+            box-shadow: 0 0 25px #7000ff;
+        }
+
+        /* Главный контент */
+        .main-container {
+            max-width: 1200px;
+            margin: 150px auto 50px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .bonus-tag {
+            display: inline-block;
+            background: rgba(112, 0, 255, 0.2);
+            border: 1px solid #7000ff;
+            color: #b983ff;
+            padding: 8px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            box-shadow: 0 0 15px rgba(112, 0, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h1 span {
+            color: #00f0ff;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+        }
+
+        p.description {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: #95989a;
+            line-height: 1.6;
+        }
+
+        /* Центральные брутальные кнопки */
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-main {
+            background: #00f0ff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+
+        .cta-main:hover {
+            background: #fff;
+            box-shadow: 0 0 30px #fff;
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            border: 2px solid #c5c6c7;
+            color: #c5c6c7;
+        }
+
+        .cta-secondary:hover {
+            border-color: #7000ff;
+            color: #7000ff;
+            box-shadow: 0 0 20px rgba(112, 0, 255, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация и Шапка -->
+    <header>
+        <div class="logo">💎 DIAMOND WOLF RP</div>
+        <button class="menu-btn" onclick="toggleMenu()">Меню ☰</button>
+    </header>
+
+    <!-- Боковая панель (Сидбар) -->
+    <div class="sidebar" id="sidebar">
+        <a href="#" class="sidebar-btn btn-donate">=== Донат Временно не доступен ===</a>
+        <a href="#" class="sidebar-btn btn-download">==== Скачать игру ====</a>
+        <a href="#" class="sidebar-btn btn-forum">==== Форум ====</a>
+    </div>
+
+    <!-- Главный блок страницы -->
+    <main class="main-container">
+        <div class="bonus-tag">💎 Стартовый бонус 100.000.000 ₽</div>
+        
+        <h1>Мобильная игра,<br>где ты <span>сразу легенда</span></h1>
+        
+        <p class="description">
+            С первого запуска забирай эксклюзивный неоновый транспорт, брутальный особняк и алмазные аксессуары. Весь криминальный мир и проработанная экономика — прямо в твоем смартфоне.
+        </p>
+
+        <div class="cta-group">
+            <a href="#" class="cta-btn cta-main" onclick="toggleMenu(); return false;">Начать играть</a>
+            <a href="#" class="cta-btn cta-secondary">О проекте</a>
+        </div>
+    </main>
+
+    <!-- Скрипт для открытия бокового меню -->
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Закрытие меню при клике вне его области
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-btn');
+            
+            if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
